@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener(function() {
     contexts: ["all"]  
   });
 });
-
+//
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
   if (info.menuItemId === "sampleContextMenu") {
     // Logic for handling the context menu click
