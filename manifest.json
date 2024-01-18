@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Candidate Lookup",
+    "version": "1.0",
+    "description": "Search for candidates easily",
+    "icons": {
+      "16": "images/magic16.png",
+      "32": "images/magic32.png",
+      "48": "images/magic48.png",
+      "128": "images/magic128.png"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": [
+      "contextMenus",
+      "activeTab"
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
