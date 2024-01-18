@@ -1,13 +1,28 @@
 chrome.runtime.onInstalled.addListener(function() {
+  console.log("Extension installed and running!");
+
+  // Set up context menu (right-click menu) items
   chrome.contextMenus.create({
-    id: "ContextMenu",
-    title: "Click here to open search window",
-    contexts: ["all"]  
+      id: "sampleContextMenu",
+      title: "Search here",
+      contexts: ["all"]
   });
 });
-//
-chrome.contextMenus.onClicked.addListener(function(info, tab) {
-  if (info.menuItemId === "sampleContextMenu") {
-    // Logic for handling the context menu click
+
+// Handling context menu click events
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === "sampleContextMenu" && info.selectionText) {
+      console.log("Context menu item clicked. Selected text:", info.selectionText);
+      // Add functionality here, e.g., sending the selected text to the popup
   }
 });
+
+// Example of a background event listener for messages from popup.js
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+      if (request.action == "performSearch") {
+          console.log("Performing search for:", request.searchText);
+          // Add code here to perform the search
+      }
+  }
+);

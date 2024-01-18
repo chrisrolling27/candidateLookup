@@ -1,45 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Candidate Lookup</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 10px;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-    #searchInput {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    .button {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 5px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .linkedin { background-color: #0077b5; color: white; }
-    .facebook { background-color: #4267B2; color: white; }
-    .github { background-color: #333; color: white; }
-  </style>
-</head>
-<body>
-  <div id="textArea">
-    <input type="text" id="searchInput" placeholder="Search for candidates...">
-    <button class="button linkedin" id="linkedinSearch">Search LinkedIn</button>
-    <button class="button facebook" id="facebookSearch">Search Facebook</button>
-    <button class="button github" id="githubSearch">Search GitHub</button>
-  </div>
+  <head>
+    <title>Candidate Lookup</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 10px;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      #searchInput {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .linkedin {
+        background-color: #0077b5;
+        color: white;
+      }
+      .facebook {
+        background-color: #4267b2;
+        color: white;
+      }
+      .github {
+        background-color: #333;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="textArea">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for candidates..."
+      />
+      <button class="button linkedin" id="linkedinSearch">
+        Search LinkedIn
+      </button>
+      <button class="button facebook" id="facebookSearch">
+        Search Facebook
+      </button>
+      <button class="button github" id="githubSearch">Search GitHub</button>
+    </div>
 
-  <script>
-    // JavaScript code to handle button clicks and initiate searches
-  </script>
-
-</body>
+    <script src="popup.js"></script>
+  </body>
 </html>
