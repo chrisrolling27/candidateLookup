@@ -1,31 +1,17 @@
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(function () {
   console.log("Extension installed");
   chrome.contextMenus.create({
-      id: "sampleContextMenu",
-      title: "Search for candidate",
-      contexts: ["all"]
+    id: "sampleContextMenu",
+    title: "Search for candidate",
+    contexts: ["all"],
   });
 });
 
-
-
-
-
-
-// Handling context menu click events
-// chrome.contextMenus.onClicked.addListener((info, tab) => {
-//   if (info.menuItemId === "sampleContextMenu" && info.selectionText) {
-//       console.log("Context menu item clicked. Selected text:", info.selectionText);
-//       // Add functionality here, e.g., sending the selected text to the popup
-//   }
-// });
-
-// Example of a background event listener for messages from popup.js
-// chrome.runtime.onMessage.addListener(
-//   function(request, sender, sendResponse) {
-//       if (request.action == "performSearch") {
-//           console.log("Performing search for:", request.searchText);
-//           // Add code here to perform the search
-//       }
-//   }
-// );
+chrome.contextMenus.onClicked.addListener(function (info, tab) {
+  if (info.menuItemId === "sampleContextMenu") {
+    chrome.windows.create({
+      url: chrome.runtime.getURL("popup.html"), // Replace with the path to your HTML file
+      type: "popup"
+    });
+  }
+});
