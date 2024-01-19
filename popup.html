@@ -2,8 +2,27 @@
 <html>
   <head>
     <title>Candidate Lookup</title>
+  </head>
+  <body>
+    <div id="textArea">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for candidates..."
+      />
+      <button class="button linkedin" id="linkedinSearch">
+        Search LinkedIn
+      </button>
+      <button class="button facebook" id="facebookSearch">
+        Search Facebook
+      </button>
+      <button class="button github" id="githubSearch">Search GitHub</button>
+    </div>
+    <script src="popup.js"></script>
     <style>
       body {
+        width: 400px;
+        height: 600px;
         font-family: Arial, sans-serif;
         margin: 10px;
         padding: 0;
@@ -37,23 +56,5 @@
         color: white;
       }
     </style>
-  </head>
-  <body>
-    <div id="textArea">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search for candidates..."
-      />
-      <button class="button linkedin" id="linkedinSearch">
-        Search LinkedIn
-      </button>
-      <button class="button facebook" id="facebookSearch">
-        Search Facebook
-      </button>
-      <button class="button github" id="githubSearch">Search GitHub</button>
-    </div>
-
-    <script src="popup.js"></script>
   </body>
 </html>
