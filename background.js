@@ -19,40 +19,30 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   }
 });
 
-
 //bad listener and sender for content.js highlighted text, doom loop
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log('Message received:', message);
+// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+//   console.log('Message received:', message);
 
-  chrome.runtime.sendMessage({ highlightedText: message })
-  
-});
+//   chrome.runtime.sendMessage({ highlightedText: message })
 
-//better listener for content.js and sends to popupPort if exists 
+// });
+
+//better listener for content.js and sends to popupPort if exists
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log('Message received:', message);
+  console.log("Message received:", message);
   if (popupPort) {
     popupPort.postMessage({ highlightedText: message.text });
   }
 });
 
-
-
-//listens for popup.js port 
+//listens for popup.js port
 let popupPort;
 
 chrome.runtime.onConnect.addListener((port) => {
-  if (port.name === 'popup') {
+  if (port.name === "popup") {
     popupPort = port;
     port.onDisconnect.addListener(() => {
       popupPort = null;
     });
   }
 });
-
-
-
-
-
-
-

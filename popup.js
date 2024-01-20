@@ -1,21 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.scripting.executeScript({
-          target: {tabId: tabs[0].id},
-          function: getSelectedText
-      });
-  });
-});
-
-function getSelectedText() {
-  chrome.tabs.sendMessage(tabs[0].id, {method: "getSelection"}, function(response) {
-      document.getElementById("text").innerHTML = response.data;
-  });
-}
-
-
-
-
 //stuff for html search
 function search(baseURL, inputId) {
   var input = document.getElementById(inputId);
@@ -45,4 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
   githubBtn.addEventListener("click", function () {
     search("https://github.com/search?q=", "searchBox");
   });
+});
+
+
+
+
+
+
+//new
+const port = chrome.runtime.connect({ name: 'popup' });
+
+port.onMessage.addListener((message) => {
+  if (message.highlightedText) {
+    // Handle the highlighted text, e.g., display it in the popup's HTML
+    document.getElementById('someElement').textContent = message.highlightedText;
+  }
 });
