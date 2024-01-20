@@ -1,5 +1,4 @@
 chrome.runtime.onInstalled.addListener(function() {
-  console.log("Extension installed");
   chrome.contextMenus.create({
       id: "sampleContextMenu",
       title: "Search for NAME",
