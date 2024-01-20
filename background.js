@@ -19,6 +19,13 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   }
 });
 
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log('Message received:', message);
+  sendResponse({ response: "Message received" });
+});
+
+
 //seems like background.js is only really doing a weird popup for the context menu? hm
 //background.js is not supposed to intercept page content for security reasons
 
