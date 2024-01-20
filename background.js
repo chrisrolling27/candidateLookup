@@ -20,13 +20,39 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 });
 
 
+//bad listener and sender for content.js highlighted text, doom loop
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log('Message received:', message);
-  sendResponse({ response: "Message received" });
+
+  chrome.runtime.sendMessage({ highlightedText: message })
+  
+});
+
+//better listener for content.js and sends to popupPort if exists 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log('Message received:', message);
+  if (popupPort) {
+    popupPort.postMessage({ highlightedText: message.text });
+  }
 });
 
 
-//seems like background.js is only really doing a weird popup for the context menu? hm
-//background.js is not supposed to intercept page content for security reasons
 
-//does content.js need to send to background.js or can it go to popup.js?
+//listens for popup.js port 
+let popupPort;
+
+chrome.runtime.onConnect.addListener((port) => {
+  if (port.name === 'popup') {
+    popupPort = port;
+    port.onDisconnect.addListener(() => {
+      popupPort = null;
+    });
+  }
+});
+
+
+
+
+
+
+
