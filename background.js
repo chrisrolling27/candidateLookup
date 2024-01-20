@@ -19,15 +19,12 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   }
 });
 
-//bad listener and sender for content.js highlighted text, doom loop
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//   console.log('Message received:', message);
 
-//   chrome.runtime.sendMessage({ highlightedText: message })
 
-// });
 
-//better listener for content.js and sends to popupPort if exists
+let popupPort;
+
+//listener for content.js and sends to popupPort if exists
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log("Message received:", message);
   if (popupPort) {
@@ -35,9 +32,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-//listens for popup.js port
-let popupPort;
 
+//listens for popup.js port, highly suspect 
 chrome.runtime.onConnect.addListener((port) => {
   if (port.name === "popup") {
     popupPort = port;
