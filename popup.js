@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', function() {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.scripting.executeScript({
+          target: {tabId: tabs[0].id},
+          function: getSelectedText
+      });
+  });
+});
+
+function getSelectedText() {
+  chrome.tabs.sendMessage(tabs[0].id, {method: "getSelection"}, function(response) {
+      document.getElementById("text").innerHTML = response.data;
+  });
+}
+
+
+
+
+//stuff for html search
 function search(baseURL, inputId) {
   var input = document.getElementById(inputId);
   var query = encodeURIComponent(input.value);
@@ -15,15 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
   linkedinBtn.addEventListener("click", function () {
     search(
       "https://www.linkedin.com/search/results/all/?keywords=",
-      "searchInput"
+      "searchBox"
     );
   });
 
   facebookBtn.addEventListener("click", function () {
-    search("https://www.facebook.com/search/top/?q=", "searchInput");
+    search("https://www.facebook.com/search/top/?q=", "searchBox");
   });
 
   githubBtn.addEventListener("click", function () {
-    search("https://github.com/search?q=", "searchInput");
+    search("https://github.com/search?q=", "searchBox");
   });
 });
