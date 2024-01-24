@@ -1,3 +1,5 @@
+console.log("background.js here");
+
 //sample contextMenus
 chrome.runtime.onInstalled.addListener(function () {
   chrome.contextMenus.create({
@@ -21,7 +23,6 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 
 
 
-
 let popupPort;
 
 //listener for content.js and sends to popupPort if exists
@@ -32,8 +33,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-
-//listens for popup.js port, highly suspect 
+//listens for popup.js port, highly suspect
 chrome.runtime.onConnect.addListener((port) => {
   if (port.name === "popup") {
     popupPort = port;

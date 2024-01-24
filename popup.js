@@ -1,3 +1,5 @@
+console.log('popup.js here');
+
 //stuff for html search
 function search(baseURL, inputId) {
   var input = document.getElementById(inputId);
