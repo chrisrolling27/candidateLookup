@@ -34,12 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-//new
 const port = chrome.runtime.connect({ name: 'popup' });
 
 port.onMessage.addListener((message) => {
   if (message.highlightedText) {
-    // Handle the highlighted text, e.g., display it in the popup's HTML
     document.getElementById('someElement').textContent = message.highlightedText;
   }
 });
