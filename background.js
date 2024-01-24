@@ -26,7 +26,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 //   chrome.runtime.sendMessage({ highlightedText: message })
 
 // });
-
+//
 //better listener for content.js and sends to popupPort if exists
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log("Message received:", message);
