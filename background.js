@@ -22,23 +22,22 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 });
 
 
-
 let popupPort;
 
-//listener for content.js and sends to popupPort if exists
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log("Message received:", message);
-  if (popupPort) {
-    popupPort.postMessage({ text: message.text });
-  }
-});
-
-//listens for popup.js port, highly suspect
+//listens for port connections
 chrome.runtime.onConnect.addListener((port) => {
   if (port.name === "popup") {
     popupPort = port;
     port.onDisconnect.addListener(() => {
       popupPort = null;
     });
+  }
+});
+
+//listener for content.js and sends to popupPort if exists
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log("Message received:", message);
+  if (popupPort) {
+    popupPort.postMessage({ text: message.text });
   }
 });
