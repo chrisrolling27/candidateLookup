@@ -35,13 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
+//LISTENS FOR BACKGROUND.JS
 const port = chrome.runtime.connect({ name: 'popup' });
 
 port.onMessage.addListener((message) => {
-  console.log('port.onMessage popup.js message detected');
-  if (message.highlightedText) {
-    console.log('popup.js got text');
-    document.getElementById('someElement').textContent = message.highlightedText;
+  //console.log('port.onMessage popup.js message detected');
+  if (message.text) {
+    console.log('popup.js got text!');
+    document.getElementById('someElement').textContent = message.text;
   }
 });

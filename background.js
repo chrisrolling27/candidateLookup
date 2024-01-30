@@ -29,7 +29,7 @@ let popupPort;
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log("Message received:", message);
   if (popupPort) {
-    popupPort.postMessage({ highlightedText: 'heymom' });
+    popupPort.postMessage({ text: message.text });
   }
 });
 

@@ -5,9 +5,13 @@ document.addEventListener("mouseup", async function (event) {
   let selectionText = selection.toString().trim();
   //assume worse intent and validate better
 
+  if (selectionText === "") {
+    selectionText = "NO HIGHLIGHTED TEXT";
+  }
+
   const response = await chrome.runtime.sendMessage({
     type: "sentHighlight",
-    text: selectionText
+    text: selectionText,
   });
   // if (selectionText && selectionText !== "") {
   // }
