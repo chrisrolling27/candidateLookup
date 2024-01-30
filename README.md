@@ -9,3 +9,5 @@ put candidate name in context menu
 //background.js is not supposed to intercept page content for security reasons
 
 //does content.js need to send to background.js or can it go to popup.js?
+
+//https://medium.com/@jgleeee/quicklygpt-a-chrome-extension-to-save-your-time-a041805ebe77

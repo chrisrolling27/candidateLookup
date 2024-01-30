@@ -1,4 +1,4 @@
-console.log("content script here");
+console.log("CONTENT SCRIPT HERE");
 
 document.addEventListener("mouseup", async function (event) {
   let selection = window.getSelection();
