@@ -39,7 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
 const port = chrome.runtime.connect({ name: 'popup' });
 
 port.onMessage.addListener((message) => {
+  console.log('port.onMessage popup.js message detected');
   if (message.highlightedText) {
+    console.log('popup.js got text');
     document.getElementById('someElement').textContent = message.highlightedText;
   }
 });

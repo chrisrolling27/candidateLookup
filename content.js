@@ -7,7 +7,7 @@ document.addEventListener("mouseup", async function (event) {
 
   const response = await chrome.runtime.sendMessage({
     type: "sentHighlight",
-    text: "from content.js test!"
+    text: selectionText
   });
   // if (selectionText && selectionText !== "") {
   // }
