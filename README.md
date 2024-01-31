@@ -11,3 +11,6 @@ put candidate name in context menu
 //does content.js need to send to background.js or can it go to popup.js?
 
 //https://medium.com/@jgleeee/quicklygpt-a-chrome-extension-to-save-your-time-a041805ebe77
+
+
+go forward: why condition content.js to listen for mouse? it should liberally send highlighted text 
