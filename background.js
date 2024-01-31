@@ -21,6 +21,8 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   }
 });
 
+
+
 let popupPort;
 
 //listens for port connections
@@ -41,6 +43,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log("Message received:", message);
 
   if (popupPort) {
-    popupPort.postMessage({ text: "heddo" });
+    popupPort.postMessage({ text: message });
   }
 });
