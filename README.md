@@ -14,3 +14,20 @@ put candidate name in context menu
 
 
 go forward: why condition content.js to listen for mouse? it should liberally send highlighted text 
+
+
+
+from content.js:
+let selection = window.getSelection();
+let selectionText = selection.toString().trim();
+
+if (selectionText === "") {
+  selectionText = "NO HIGHLIGHTED TEXT";
+}
+
+if (selectionText) {
+  chrome.runtime.sendMessage({
+    type: "sentHighlight",
+    text: selectionText,
+  });
+};

@@ -1,4 +1,4 @@
-console.log('popup.js here');
+console.log("popup.js here");
 
 //stuff for html search
 function search(baseURL, inputId) {
@@ -34,14 +34,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+chrome.runtime.connect({ name: "popup" });
+
+chrome.runtime.onMessage.addListener(function (message) {
+  console.log("popup onMessage Listener");
+
+  if (message.text) {
+    console.log("popup.js got text!");
+    document.getElementById("someElement").textContent = message.text;
+  }
+
+});
+
+
+
 
 //LISTENS FOR BACKGROUND.JS
-const port = chrome.runtime.connect({ name: 'popup' });
+// const port = chrome.runtime.connect({ name: 'popup' });
 
-port.onMessage.addListener((message) => {
-  //console.log('port.onMessage popup.js message detected');
-  if (message.text) {
-    console.log('popup.js got text!');
-    document.getElementById('someElement').textContent = message.text;
-  }
-});
+// port.onMessage.addListener((message) => {
+//   //console.log('port.onMessage popup.js message detected');
+// if (message.text) {
+//   console.log("popup.js got text!");
+//   document.getElementById("someElement").textContent = message.text;
+// }
+// });

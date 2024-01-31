@@ -21,8 +21,6 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   }
 });
 
-
-
 let popupPort;
 
 //listens for port connections
@@ -37,12 +35,21 @@ chrome.runtime.onConnect.addListener((port) => {
 
 //listener for content.js and sends to popupPort if exists
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  
-  chrome.storage.local.set({ key: message }).then(console.log("this work?"));
+  console.log('message.text: ', message.text);
+  chrome.storage.local.set({ key: message.text }, function () {
+    //console.log("Storage set:", message.text);
 
-  console.log("Message received:", message);
+    // Check if popupPort is available and message is set
+    if (popupPort) {
+      // Since storage operations are async, retrieve inside the callback
+      chrome.storage.local.get(["key"], function (result) {
+        if (result.key) {
+          console.log(result.key);
+          popupPort.postMessage({ text: result.key });
+        }
+      });
+    }
+  });
 
-  if (popupPort) {
-    popupPort.postMessage({ text: message });
-  }
+  //console.log("Message received:", message);
 });
