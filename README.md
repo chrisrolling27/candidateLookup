@@ -31,3 +31,8 @@ if (selectionText) {
     text: selectionText,
   });
 };
+
+
+thoughts:
+try to get a more permenant store?
+when does popup.js work

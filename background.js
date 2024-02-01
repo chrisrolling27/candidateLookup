@@ -21,12 +21,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   }
 });
 
-chrome.action.onClicked.addListener(function(tab) {
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: ['content.js']
-  });
-});
+
 
 let popupPort;
 
@@ -58,8 +53,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
   });
 
-  //console.log("Message received:", message);
 });
-
 
 
