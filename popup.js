@@ -59,3 +59,5 @@ chrome.runtime.onMessage.addListener(function (message) {
 //   document.getElementById("someElement").textContent = message.text;
 // }
 // });
+
+

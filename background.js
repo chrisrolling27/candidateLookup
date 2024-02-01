@@ -21,6 +21,13 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   }
 });
 
+chrome.action.onClicked.addListener(function(tab) {
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    files: ['content.js']
+  });
+});
+
 let popupPort;
 
 //listens for port connections
@@ -35,7 +42,7 @@ chrome.runtime.onConnect.addListener((port) => {
 
 //listener for content.js and sends to popupPort if exists
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log('message.text: ', message.text);
+  //console.log('message.text: ', message.text);
   chrome.storage.local.set({ key: message.text }, function () {
     //console.log("Storage set:", message.text);
 
@@ -44,7 +51,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       // Since storage operations are async, retrieve inside the callback
       chrome.storage.local.get(["key"], function (result) {
         if (result.key) {
-          console.log(result.key);
+          //console.log(result.key);
           popupPort.postMessage({ text: result.key });
         }
       });
@@ -53,3 +60,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   //console.log("Message received:", message);
 });
+
+
+
