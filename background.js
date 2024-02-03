@@ -30,7 +30,8 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
           chrome.storage.local.set({ highlight: response.text }, function () {
             //creates window after writing highlight to storage
             chrome.windows.create({
-              url: chrome.runtime.getURL("popup2.html"),
+              //should there be 2 different popups to match the two retrieval methods? 
+              url: chrome.runtime.getURL("popup.html"),
               type: "popup",
               width: 500,
               height: 600,
