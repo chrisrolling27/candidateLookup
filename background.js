@@ -15,7 +15,6 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
   if (info.menuItemId === "contextMenu") {
     console.log("extension clicked in contextMenu");
     try {
-      // Inject content.js into the current tab. i tihnk this works but you cant .then it
       chrome.scripting
         .executeScript({
           target: { tabId: tab.id },
@@ -28,23 +27,19 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
         .then((response) => {
           if (response && response.text) {
             console.log("Selected text: ", response.text);
-
+            chrome.windows.create({
+              url: chrome.runtime.getURL("popup2.html"),
+              type: "popup",
+              width: 500,
+              height: 600,
+            });
           }
         })
         .catch((error) => {
-          // Handle any errors that might occur during script injection or message sending
           console.error("Error occurred: ", error);
         });
-
-      // Then open popup.html in a new popup window
-      chrome.windows.create({
-        url: chrome.runtime.getURL("popup2.html"),
-        type: "popup",
-        width: 500,
-        height: 600,
-      });
     } catch (error) {
-      console.log("Error: ", error.message);
+      console.error("Error in try-catch: ", error);
     }
   }
 });
