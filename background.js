@@ -22,21 +22,19 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
           files: ["content.js"],
         })
         .then(() => {
-          console.log('you got this far');
-          // Once the script is injected, send a message to it to get the selected text
+          console.log("background's content.js returned");
           return chrome.tabs.sendMessage(tab.id, { action: "getSelectedText" });
         })
         .then((response) => {
           if (response && response.text) {
             console.log("Selected text: ", response.text);
-            // Proceed with your logic here
+
           }
         })
         .catch((error) => {
           // Handle any errors that might occur during script injection or message sending
           console.error("Error occurred: ", error);
         });
-
 
       // Then open popup.html in a new popup window
       chrome.windows.create({
