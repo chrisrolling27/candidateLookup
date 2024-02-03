@@ -1,5 +1,10 @@
 console.log('popup2 here');
 
+chrome.storage.local.get(['highlight'], function(result) {
+  document.getElementById("someElement").textContent = result.highlight;
+});
+
+
 
 // //causes errors
 // window.onload = function () {

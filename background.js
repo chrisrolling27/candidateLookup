@@ -25,18 +25,17 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
           return chrome.tabs.sendMessage(tab.id, { action: "getSelectedText" });
         })
         .then((response) => {
-          if (response && response.text) {
-            console.log("Selected text: ", response.text);
+          console.log("Selected text: ", response.text);
+          //todo cleanse response.text 
+          chrome.storage.local.set({ highlight: response.text }, function () {
+            //creates window after writing highlight to storage
             chrome.windows.create({
               url: chrome.runtime.getURL("popup2.html"),
               type: "popup",
               width: 500,
               height: 600,
             });
-          }
-        })
-        .catch((error) => {
-          console.error("Error occurred: ", error);
+          });
         });
     } catch (error) {
       console.error("Error in try-catch: ", error);
