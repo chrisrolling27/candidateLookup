@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Candidate Lookup</title>
+  </head>
+  <body>
+    <div id="textArea">
+      <input type="text" id="searchBox" />
+      <div id="someElement"></div>
+      <button class="button linkedin" id="linkedinSearch">
+        Search LinkedIn
+      </button>
+      <button class="button facebook" id="facebookSearch">
+        Search Facebook
+      </button>
+      <button class="button github" id="githubSearch">Search GitHub</button>
+    </div>
+    <script src="popup2.js"></script>
+    <style>
+      body {
+        width: 400px;
+        height: 600px;
+        font-family: Arial, sans-serif;
+        margin: 10px;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      #searchBox {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .linkedin {
+        background-color: #0077b5;
+        color: white;
+      }
+      .facebook {
+        background-color: #4267b2;
+        color: white;
+      }
+      .github {
+        background-color: #333;
+        color: white;
+      }
+    </style>
+  </body>
+</html>
