@@ -3,7 +3,7 @@
 todo:
 put candidate name in context menu 
 
-
+https://recruitingdaily.com/easy-candidate-lookup-with-this-vital-chrome-extension/
 
 //seems like background.js is only really doing a weird popup for the context menu? hm
 //background.js is not supposed to intercept page content for security reasons
@@ -36,3 +36,6 @@ if (selectionText) {
 thoughts:
 try to get a more permenant store?
 when does popup.js work
+
+
+todo:
